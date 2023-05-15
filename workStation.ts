@@ -1,46 +1,57 @@
-import http, { ServerResponse } from "http";
-const food = [
-  "Tea",
-  "Bread",
-  "Beans",
-  "Rice",
-  "Amala",
-  "Ewedu",
-  "Edikang-Ikong",
-];
+import http, { IncomingMessage, ServerResponse } from "http";
+import { url } from "inspector";
 
+const food = ["Rice", "Beans", "Yam", "Tea", "Eba", "Fufu", "Bread"];
 const data: any = [];
-
-Array.from({ length: 7 }, () => {
+Array.from({ length: 5 }, () => {
   let numb = Math.floor(Math.random() * food.length);
   let cost = Math.floor(Math.random() * 1000);
   data.push({ item: food[numb], cost });
 });
 
-console.log(data);
-const port: number = 4000;
+// console.log(data);
+//This is JSON
 
-const server = http.createServer(
-  (req: http.IncomingMessage, res: ServerResponse<http.IncomingMessage>) => {
-    const { method, url } = req;
+// const port: number = 5544;
+// const server: http.Server<
+//   typeof http.IncomingMessage,
+//   typeof http.ServerResponse
+// > = http.createServer(
+//   (
+//     req: http.IncomingMessage,
+//     res: http.ServerResponse<http.IncomingMessage>
+//   ) => {
+//     // Reading the server
+//     // const { method, url } = req;
+//     // if (method === "GET" && url === "/") {
+//     //     res.writeHead(200, {"content-type": "application/json"})
+//     //   res.write("We are good!\n");
+//     //   res.write(JSON.stringify(data)); //convert from JSON to String...Server...
+//     //   console.log(req)
+//     //   res.end();
+//     // } else {
+//     // }
+//     //writing to server...
+//     let body: string = "";
+//     let newData: {}[] = [];
 
-    if (method === "GET" && url === "/") {
-        res.writeHead((res.statusCode = 200), {
-            "content-type": "application/json"
-        })
-      res.write("We are good..!");
-      res.write(JSON.stringify(data));
-      res.end();
-    } else {
-    }
-  }
-);
+//     req.on("data", (chunk: Buffer) => {
+//       body += chunk;
+//       //   console.log(chunk)
+//       //   console.log(body)
+//     });
 
-server.on("Connection", () => {
-  console.log("A user connected");
-});
+//     req.on("data", () => {
+//       let result: {} = JSON.parse(body);
+//       newData.push(result);
+//       console.log(newData);
+//       res.write(JSON.stringify(newData));
+//       res.end();
+//     });
+//   }
+// );
 
-server.listen(port, () => {
-  console.log("");
-  console.log("Server is now live....");
-});
+// server.listen(port, () => {
+//   console.log("server is now listening");
+// });
+
